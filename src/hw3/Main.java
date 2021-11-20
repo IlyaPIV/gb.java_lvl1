@@ -140,10 +140,7 @@ public class Main {
         int n = (int) (Math.random()*10-5);
         mass = changeMass(mass,n);
         System.out.println("Изменённый массив:");
-        for (int i=0; i<mass.length; i++){
-            System.out.print(mass[i]+"\t");
-        }
-        System.out.println();
+        printMass(mass);
     }
 
     public static int[] changeMass(int[] mass, int n){
