@@ -13,7 +13,11 @@ public class Main {
         printLine(5);
         task5();
         printLine(6);
-
+        task6();
+        printLine(7);
+        task7();
+        printLine(8);
+        task8();
     }
 
     public static void printLine(int num){
@@ -89,13 +93,78 @@ public class Main {
                 mass[i] = (int) (Math.random()*initValue);
             }
         }
+        System.out.println("Инициированный массив:");
+        printMass(mass);
         return mass;
     }
 
     public static void task5(){
         int[] mass = initMass(7,33, true);
-        System.out.println("Инициированный массив:");
-        printMass(mass);
     }
 
+    public static void task6(){
+        int[] mass = initMass(7,33, false);
+
+        int minValue = mass[0];
+        int maxValue = mass[0];
+        for (int i=1; i<mass.length; i++){
+            if (mass[i]<minValue) minValue=mass[i];
+            if (mass[i]>maxValue) maxValue=mass[i];
+        }
+        System.out.println("MIN значение = "+minValue);
+        System.out.println("MAX значение = "+maxValue);
+    }
+
+    public static void task7(){
+        int[] mass = initMass(11, 5, false);
+        boolean theSame = checkMass(mass);
+        System.out.println(theSame ? "Имеются две равные части лево-право" : "Не имеется двух равных частей" );
+     }
+
+    public static boolean checkMass(int[] mass){
+        int summL = 0;
+        for (int i=0; i<mass.length; i++){
+            int summR = 0;
+            summL+=mass[i];
+            if (i+1!=mass.length){
+                for (int j=i+1; j<mass.length;j++) summR+=mass[j];
+            }
+            if (summL==summR)   return true;
+        }
+        return false;
+    }
+
+    public static void task8(){
+        int[] mass = initMass(7, 10, false);
+
+        int n = (int) (Math.random()*10-5);
+        mass = changeMass(mass,n);
+        System.out.println("Изменённый массив:");
+        for (int i=0; i<mass.length; i++){
+            System.out.print(mass[i]+"\t");
+        }
+        System.out.println();
+    }
+
+    public static int[] changeMass(int[] mass, int n){
+        int temp;
+        System.out.println("Сдвиг массива на "+n+" элементов");
+        for (int count=0; count<(n<0 ? -n: n); count++) {
+            if (n>0) {
+                temp = mass[mass.length-1]; //последний элемент в память
+                for (int i=mass.length-1;i>0;i--){
+                    mass[i]=mass[i-1]; //смещаем вправо
+                }
+                mass[0] = temp; //в первый элемент помещаем старый последний
+            } else {
+                temp = mass[0]; //первый элемент в память
+                for (int i=0;i<mass.length-1;i++){
+                    mass[i]=mass[i+1]; //смещаем влево
+                }
+                mass[mass.length-1] = temp; //в последний элемент помещаем старый первый
+            }
+        }
+
+        return mass;
+    }
 }
