@@ -14,7 +14,7 @@ public class tikTakToe {
     public static final char DOT_X = 'X';
     public static final char DOT_0 = '0';
 
-    public static int LEVEL; //уровень сложности
+  //  public static int LEVEL; //уровень сложности
     public static int MAX_TURNS; //максимальное кол-во ходов = кол-во ячеек
 
     public static boolean humansTurn; //ход игрока
@@ -49,16 +49,16 @@ public class tikTakToe {
     }
 
     public static void initGame(){
-        LEVEL = 0;
+        int level = 0;
         WIN = false;
 
         do {
             System.out.println("Введите уровень сложности (от 1 до N):");
             int lvl = scan.nextInt();
-            if (lvl>0) LEVEL=lvl;
-        } while (LEVEL==0);
-        SIZE = 3+(LEVEL-1)*2; //поле с шагом в 2 за каждый уровень сложности. MIN 3x3
-        DOTS_TO_WIN = 2+LEVEL;
+            if (lvl>0) level=lvl;
+        } while (level==0);
+        SIZE = 3+(level-1)*2; //поле с шагом в 2 за каждый уровень сложности. MIN 3x3
+        DOTS_TO_WIN = 2+level;
         MAX_TURNS = SIZE*SIZE;
         map = new char[SIZE][SIZE];
 
@@ -89,19 +89,20 @@ public class tikTakToe {
         }
     }
 
-    public static boolean checkTheWin(char[][] gameMap, boolean human) {
+    public static boolean checkTheWin(char[][] gameMap, boolean itIsHuman) {
         for (int i=0; i<SIZE; i++){
             for (int j=0; j<SIZE; j++)
             {
-                if ((checkPoint_down(gameMap, i, j, human))
-                        || (checkPoint_right(gameMap, i, j, human))
-                        || (checkPoint_diag_up(gameMap, i, j, human))
-                        || (checkPoint_diag_down(gameMap, i, j, human))) return true;
+                if ((checkPoint_down(gameMap, i, j, itIsHuman))
+                        || (checkPoint_right(gameMap, i, j, itIsHuman))
+                        || (checkPoint_diag_up(gameMap, i, j, itIsHuman))
+                        || (checkPoint_diag_down(gameMap, i, j, itIsHuman))) return true;
             }
         }
         return false;
     }
 
+    //проверка по вертикали
     public static boolean checkPoint_down(char[][] gameMap, int i,int j, boolean human) {
         if (i+DOTS_TO_WIN>SIZE) return false; else {
             for (int t=0; t<DOTS_TO_WIN;t++){
@@ -111,6 +112,7 @@ public class tikTakToe {
         }
     }
 
+    //проверка по горизонтали
     public static boolean checkPoint_right(char[][] gameMap, int i,int j, boolean human) {
         if (j+DOTS_TO_WIN>SIZE) return false; else {
             for (int t=0; t<DOTS_TO_WIN;t++){
@@ -120,6 +122,7 @@ public class tikTakToe {
         }
     }
 
+    //проверка диагонали вверх
     public static boolean checkPoint_diag_up(char[][] gameMap, int i,int j, boolean human) {
         if ((j+DOTS_TO_WIN>SIZE) || (i-DOTS_TO_WIN+1<0)) return false; else {
             for (int t=0; t<DOTS_TO_WIN;t++){
@@ -129,6 +132,7 @@ public class tikTakToe {
         }
     }
 
+    //проверка диагонали вниз
     public static boolean checkPoint_diag_down(char[][] gameMap, int i,int j, boolean human) {
         if ((j+DOTS_TO_WIN>SIZE) || (i+DOTS_TO_WIN>SIZE)) return false; else {
             for (int t=0; t<DOTS_TO_WIN;t++){
@@ -217,8 +221,7 @@ public class tikTakToe {
         return false;
     }
 
-
-
+    //ход компуктера в рандомную точку
     public static void randomPoint() {
         int x,y;
         do {
