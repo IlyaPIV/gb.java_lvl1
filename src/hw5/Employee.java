@@ -1,8 +1,6 @@
 package hw5;
 
 
-import java.io.PrintStream;
-
 public class Employee {
     private String fullName;
     private String position;
