@@ -1,13 +1,16 @@
 package hw6.Animals;
 
 public abstract class Animal {
-    String name;
-    final static int MAX_RUN = 0;
+    protected String name;
+    protected int MAX_RUN;
+    protected int MAX_SWIM;
 
     static int number_of_representative;
 
-    public Animal(String name){
+    public Animal(String name, int maxRunDistance, int maxSwimDistance){
         this.name = name;
+        this.MAX_RUN = maxRunDistance;
+        this.MAX_SWIM = maxSwimDistance;
         number_of_representative++;
     }
 

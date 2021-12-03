@@ -16,7 +16,7 @@ public class Main {
         Animal[] zoo = new Animal[number_of_animals];
         initZoo(zoo);
         System.out.println("==================//====================");
-        testZoo(20,zoo);
+        testZoo(10,zoo);
     }
 
     private static Animal[] initZoo(Animal[] zoo){

@@ -2,12 +2,10 @@ package hw6.Animals;
 
 public class Dog extends Animal{
 
-    private final static int MAX_RUN = 500;
-    private final static int MAX_SWIM = 200;
     static int number_of_representative;
 
     public Dog(String name){
-        super(name);
+        super(name,500,200);
         number_of_representative++;
     }
 
@@ -18,13 +16,13 @@ public class Dog extends Animal{
     }
 
     public void swim(int length){
-        String message = "Пёсэ " + name + " проплыл на " +
+        String message = "Пёсэ " + name + " ПРОПЛЫЛ на " +
                 (length>MAX_RUN ? (MAX_RUN + " метров из "+length +"." ): (length+" метров! Гав!"));
         System.out.println(message);
     }
 
     public void run(int length){
-        String message = "Пёсэ " + name + " пробежал на " +
+        String message = "Пёсэ " + name + " ПРОБЕЖАЛ на " +
                 (length>MAX_RUN ? (MAX_RUN + " метров из "+length +"." ): (length+" метров! Гав!"));
         System.out.println(message);
     }
