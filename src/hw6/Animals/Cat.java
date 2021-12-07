@@ -3,7 +3,6 @@ package hw6.Animals;
 
 public class Cat extends Animal{
 
-    private final static int MAX_RUN = 200;
     static int number_of_representative;
 
     public Cat(String name){
